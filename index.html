@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+ 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="bootsrap.css" />
+	<script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<style type="text/css">
+  #wrapper {
+     width: 90%;
+     margin: 0 auto;
+}
+body {
+   font-family: Comic Sans MS;
+   font-size: 150%;
+  
+   }
+   .suggestionsBox{
+   	  position:absolute;
+	  z-index:5;
+	  border-left:silver 1px solid;
+	  padding:0 0 0 10px;
+	  background-color:white;
+	  width:80%;
+	  left:60px;
+	  margin:0 auto;
+	  
+	  }
+
+ 
+   .suggestionList{
+   	margin:0 auto;
+   	padding:0}
+   .suggestionList 
+   	 li{
+   	 margin:0 0 3px 0;
+   	 padding:3px;
+   	 cursor:pointer}
+	 
+   .suggestionList 
+   	 li:hover
+   	 {
+   	 background-color:#659cd8}
+   .tengah{
+   	 margin:0 auto;padding-top:10px;
+   	 padding-left:310px;
+   	 font-family:Comic Sans MS;
+   	 font-size:14px}
+   .judul{padding-left:390px;
+   	   font-family:Comic Sans MS,Geneva,sans-serif}.
+	   
+#x { 
+  background: url(background.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}  
+	   
+#suggest{position:absolute;z-index:5;border-left:silver 1px solid;padding:0 0 0 10px;}
+span.pilihan{display:block;cursor:pointer;}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+  </style>
+  
+	<script type="text/javascript">
+       function lookup(a)
+	 {
+	  
+	   
+	   if(a.length==0){$("#suggestions").hide()
+	 
+	 }
+	  else
+	 {
+	 $.post("http://userdua.ceuceulaundry.web.id/carinamatest.php",{
+	     queryString:""+a+"",
+	     idclient:""+ 3 +""
+	    
+	 },
+	 
+	   function(b){if(b.length>0)
+	   {
+	     $("#suggestions").show();$("#autoSuggestionsList").html(b)
+	     
+	   }
+	   }
+	   )
+	   }
+ }
+	   
+    </script>
+	
+	<title>Guest Book</title>
+</head>
+
+<body>
+<div class="panel panel-primary" >
+<div class="panel-heading"> <img  width='60px' height='60px' style='float:right;' src = "img/logo.png">   <h3  align = "center">- ::  Guest Book ::-</h3> </div>
+<div class="panel-body">
+<form name="myForm" action="" method="post" onsubmit="return validateForm()" enctype="multipart/form-data" >
+<div class="form-group"> 
+<div class="panel panel-primary"> 
+<div class="panel-body">
+<input type ='text'   class="form-control" name = 'KUNCI' placeholder="Please Type Guest Name" id="inputString"  onkeyup="lookup(this.value)" autocomplete = "off" onblur="fill()"> 
+<div  class="suggestionsBox" id="suggestions" style="display:none">
+<div  class="suggestionList" id="autoSuggestionsList">
+</div> 
+</div>
+</div> 
+</div> 
+</div> 
+
+  <div class="form-group">
+   <input class="form-control" type="text" placeholder="Nama" id = "namatamu" name="namatamu" value="" />
+    
+    </div>
+	<div class="form-group">
+	<input class="form-control" type="text"  placeholder="Alamat" id="alamat" name="alamat" value=""/>
+  	</div>
+	<div class="form-group">
+	<input class="form-control" type="text" placeholder="No HP" id="telp"name="telp" value=""/>
+    </div>
+	<div class="form-group">
+	<input class="form-control" type="text" placeholder="Email" id="email"name="email" value=""/>
+    </div>
+   <center>
+       <div>
+        <img id="blah" src="" alt="" height="50px" width="50px"/>
+        </div>
+   </center>
+
+    <center>
+    <div class="fileUpload btn btn-primary">
+    <span>Upload Foto </span>
+    <input class="upload" type="file" id = "control" name="data_upload" onchange="readURL(this);"/>
+    </div>
+    </center>
+	<div class="form-group">
+	<center><input type="submit" name="submit" class="btn btn-primary btn-block" value="   S I M P A N   "/></center>
+	</div>
+	<input class="form-control" type="text" placeholder="" id="jenis" name="jenis" value="" style="display:none"/>
+    </form>
+    <form>
+	<div class="form-group">
+	<center><button class="btn btn-primary btn-block"> B A T A L </button> </center>  
+	</div>
+	</form>
+	</div>
+	
+ 
+ 
+ 
+       
+	
+</body>
+</html>
